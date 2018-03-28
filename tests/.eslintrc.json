@@ -1,0 +1,12 @@
+{
+    "env": {
+      "mocha": true
+    },
+    "globals": {
+      "assert": true
+    },
+    "rules": {
+        "no-underscore-dangle": 0
+    }
+  }
+  

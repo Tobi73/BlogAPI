@@ -8,7 +8,6 @@ const exit = (msg) => {
 
 const database = mongoose.connection;
 mongoose.Promise = Promise;
-console.log(process.env.NODE_ENV);
 mongoose.connect(config.database[process.env.NODE_ENV || 'dev'], {
   useMongoClient: true,
   promiseLibrary: global.Promise,

@@ -3,8 +3,12 @@ import bodyparser from 'body-parser';
 import cors from 'cors';
 import passport from 'passport';
 import index from './controller';
-import db from './repository/database';
+import { initDatabase } from './repository/database';
 import { LogicException } from './constants';
+import { initAdmin } from './bll/user';
+
+initDatabase();
+initAdmin();
 
 const app = express();
 

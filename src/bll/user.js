@@ -21,5 +21,6 @@ export const login = async (username, password) => {
   return token;
 };
 
-// Create admin user (not for production)
-signUp(config.adminCreds.username, config.adminCreds.password, Roles.admin);
+export const initAdmin = () => {
+  signUp(config.adminCreds.username, config.adminCreds.password, Roles.admin);
+};

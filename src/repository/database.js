@@ -6,16 +6,19 @@ const exit = (msg) => {
   process.exit(1);
 };
 
-const database = mongoose.connection;
-mongoose.Promise = Promise;
-mongoose.connect(config.database[process.env.NODE_ENV || 'dev'], {
-  useMongoClient: true,
-  promiseLibrary: global.Promise,
-});
-database.on('error', error => exit(`Connection to database failed: ${error}`));
-database.on('disconnected', () => exit('Disconnected from database'));
-process.on('SIGINT', () => {
-  database.close(() => {
-    process.exit(0);
+export const initDatabase = () => {
+  const database = mongoose.connection;
+  mongoose.Promise = Promise;
+  mongoose.connect(config.database[process.env.NODE_ENV || 'dev'], {
+    useMongoClient: true,
+    promiseLibrary: global.Promise,
   });
-});
+  database.on('error', error => exit(`Connection to database failed: ${error}`));
+  database.on('disconnected', () => exit('Disconnected from database'));
+  process.on('SIGINT', () => {
+    database.close(() => {
+      process.exit(0);
+    });
+  });
+};
+
